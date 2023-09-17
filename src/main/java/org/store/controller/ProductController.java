@@ -23,7 +23,7 @@ public class ProductController {
     Double taxRate = 0.0;
     for (Product product : products) {
       basePrice += product.getPrice();
-      totalPrice += product.getDiscountPrice();
+      totalDiscount += product.getDiscountPrice();
     }
     cart.setBasePrice(basePrice);
     cart.setDiscount(totalDiscount);
@@ -31,7 +31,7 @@ public class ProductController {
     cart.setTotalPrice(totalPrice);
     taxRate = totalPrice >= 2000.0 ? 0.1 : 0.14;
     cart.setTaxRate(taxRate);
-    cart.setTotalPriceAfterTax(totalPrice * taxRate);
+    cart.setTotalPriceAfterTax(totalPrice + (totalPrice * taxRate));
     return cart;
   }
 }
